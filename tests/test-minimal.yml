@@ -1,0 +1,27 @@
+name: Test minimal workflow dispatch (required inputs only)
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Invoke workflow dispatch with only required input
+        id: dispatch
+        uses: .
+        with:
+          workflow: some-workflow.yml
+          token: fake-token-for-testing
+        continue-on-error: true
+
+      - name: Assert step failed (no valid repo context or token in act)
+        env:
+          OUTCOME: ${{ steps.dispatch.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          if [ "$OUTCOME" != "failure" ]; then
+            echo "FAIL: expected step to fail without valid GitHub context, got outcome=$OUTCOME"
+            exit 1
+          fi
+          echo "PASS: step correctly failed without valid GitHub context"
