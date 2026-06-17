@@ -1,0 +1,28 @@
+{
+  "name": "workflow-dispatch",
+  "version": "1.3.2",
+  "author": "Ben Coleman",
+  "license": "MIT",
+  "description": "Trigger running GitHub Actions workflows",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --platform=node --target=node24 --outfile=dist/index.js",
+    "lint": "eslint src/ --ext .ts && prettier --check src/",
+    "lint-fix": "eslint src/ --fix",
+    "format": "prettier --write src/"
+  },
+  "keywords": [
+    "github",
+    "actions"
+  ],
+  "devDependencies": {
+    "@actions/core": "^3.0.0",
+    "@actions/github": "^9.0.0",
+    "@eslint/js": "^10.0.1",
+    "esbuild": "^0.25.0",
+    "eslint": "^10.0.1",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.0"
+  }
+}
