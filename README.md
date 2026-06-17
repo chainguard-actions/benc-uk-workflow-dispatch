@@ -9,6 +9,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
 | v1.2.4 | [`v1.2.4`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.2.4) | [`e2e5e9a`](https://github.com/benc-uk/workflow-dispatch/commit/e2e5e9a103e331dad343f381a29e654aea3cf8fc) |
+| v1.3.1 | [`v1.3.1`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.1) | [`7a02764`](https://github.com/benc-uk/workflow-dispatch/commit/7a027648b88c2413826b6ddd6c76114894dc5ec4) |
 | v1.3.2 | [`v1.3.2`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.2) | [`31e2b33`](https://github.com/benc-uk/workflow-dispatch/commit/31e2b3319479a63f0ab15bf800eff9e913504e26) |
 
 ## Privacy
