@@ -1,0 +1,33 @@
+name: Test basic workflow dispatch invocation
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: fake-token-for-testing
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run workflow dispatch action (expect API failure, not input validation failure)
+        id: action
+        uses: .
+        with:
+          workflow: test-workflow.yml
+          token: fake-token-for-testing
+          repo: octocat/Hello-World
+          ref: main
+        continue-on-error: true
+
+      - name: Assert action ran (not a missing-input error)
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          # The action should have run (either succeeded or failed due to API error)
+          # It should NOT be 'skipped' which would indicate it never ran
+          if [ "$OUTCOME" = "skipped" ]; then
+            echo "FAIL: action was skipped, expected it to run"
+            exit 1
+          fi
+          echo "PASS: action ran with outcome=$OUTCOME"

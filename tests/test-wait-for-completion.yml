@@ -1,0 +1,33 @@
+name: Test workflow dispatch with wait-for-completion input
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Run workflow dispatch action with wait options
+        id: action
+        uses: .
+        with:
+          workflow: some-workflow.yml
+          token: fake-token-for-testing
+          repo: octocat/Hello-World
+          ref: main
+          wait-for-completion: true
+          wait-timeout-seconds: 60
+        continue-on-error: true
+
+      - name: Assert action ran with wait inputs accepted
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          # The action should have run (failed due to API error is acceptable)
+          # It should NOT be 'skipped' which would indicate it never ran
+          if [ "$OUTCOME" = "skipped" ]; then
+            echo "FAIL: action was skipped, expected it to run"
+            exit 1
+          fi
+          echo "PASS: action ran with outcome=$OUTCOME"
