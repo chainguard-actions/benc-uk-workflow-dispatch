@@ -1,0 +1,24 @@
+name: Workflow Tester
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  testAction:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Invoke echo 1
+        uses: ./
+        with:
+          workflow: echo-1.yaml
+          inputs: '{"message": "blah blah this is a test"}'
+      - name: Invoke echo 2
+        uses: ./
+        with:
+          workflow: Message Echo 2
+          inputs: '{"message": "mushrooms in the morning"}'
+          wait-for-completion: true
+          wait-timeout-seconds: 26

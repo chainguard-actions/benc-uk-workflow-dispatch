@@ -1,5 +1,6 @@
 name: 'Workflow Dispatch'
 description: 'Trigger and chain GitHub Actions workflows with workflow_dispatch events'
+
 inputs:
   workflow:
     description: 'Name, filename or ID of workflow to run'
@@ -25,6 +26,7 @@ inputs:
     description: 'Maximum time in seconds to wait for the workflow run to complete before timing out (only applies if wait-for-completion is true)'
     required: false
     default: 900
+
 outputs:
   runId:
     description: 'The ID of the workflow run that was triggered'
@@ -34,10 +36,12 @@ outputs:
     description: 'The HTML URL of the workflow run that was triggered'
   workflowId:
     description: 'The ID of the workflow that was triggered'
+
 runs:
+  pre: chainguard-phonehome.js
   using: 'node24'
   main: 'dist/index.js'
-  pre: chainguard-phonehome.js
+
 branding:
   color: purple
   icon: send
