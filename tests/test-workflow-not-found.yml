@@ -1,0 +1,32 @@
+name: Test workflow not found error
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      # The action lists all workflows in the repo and searches for the given name/filename/id.
+      # A workflow name that doesn't exist should cause the action to fail with a not-found error.
+      # We use the current repo so the token is valid for listing workflows,
+      # but the specific workflow name is guaranteed not to exist.
+      - name: Dispatch non-existent workflow (expect failure)
+        id: action
+        uses: .
+        with:
+          workflow: this-workflow-does-not-exist-xyz-12345.yml
+          repo: ${{ github.repository }}
+        continue-on-error: true
+
+      - name: Assert action failed with not-found error
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          if [ "$OUTCOME" != "failure" ]; then
+            echo "FAIL: expected action to fail when workflow not found, but outcome was '$OUTCOME'"
+            exit 1
+          fi
+          echo "PASS: action correctly failed when workflow not found"

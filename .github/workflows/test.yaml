@@ -1,0 +1,22 @@
+name: Workflow Tester
+
+on: 
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  testAction:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2
+    - name: Invoke echo 1
+      uses: ./
+      with:
+        workflow: echo-1.yaml
+        inputs: '{"message": "blah blah this is a test"}'   
+    - name: Invoke echo 2
+      uses: ./
+      with:
+        workflow: Message Echo 2
+        inputs: '{"message": "mushrooms in the morning"}'           

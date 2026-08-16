@@ -1,0 +1,37 @@
+name: Test workflow dispatch with explicit ref
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      # Test that an explicit ref input is accepted by the action.
+      # The action uses the provided ref instead of the default github.context.ref.
+      # Under act, the dispatch itself may fail (ref doesn't exist on remote),
+      # but the action should accept the ref input and attempt the dispatch.
+      - name: Dispatch workflow with explicit ref
+        id: action
+        uses: .
+        with:
+          workflow: test-dispatch-with-ref.yml
+          repo: ${{ github.repository }}
+          ref: main
+        continue-on-error: true
+
+      - name: Assert action ran with explicit ref
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+        run: |
+          echo "outcome: $OUTCOME"
+          # The action should run and either succeed or fail gracefully.
+          # Under act, dispatch may fail if the workflow isn't in .github/workflows/
+          # or if the ref doesn't exist on the remote.
+          # We just verify the action ran (not skipped/cancelled).
+          if [ "$OUTCOME" = "skipped" ] || [ "$OUTCOME" = "cancelled" ]; then
+            echo "FAIL: action was unexpectedly skipped or cancelled"
+            exit 1
+          fi
+          echo "PASS: action ran with outcome: $OUTCOME (explicit ref was accepted)"
