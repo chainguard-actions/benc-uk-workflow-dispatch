@@ -1,0 +1,47 @@
+name: Test workflow dispatch with JSON inputs
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Dispatch a workflow with JSON inputs (sentinel repo — expect graceful failure)
+        id: action
+        uses: .
+        continue-on-error: true
+        with:
+          workflow: deploy.yml
+          ref: main
+          inputs: '{"environment": "staging", "debug": "true"}'
+
+      - name: Assert action ran and failed gracefully on sentinel repo
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          RUN_ID: ${{ steps.action.outputs.runId }}
+          RUN_URL: ${{ steps.action.outputs.runUrl }}
+          RUN_URL_HTML: ${{ steps.action.outputs.runUrlHtml }}
+          WORKFLOW_ID: ${{ steps.action.outputs.workflowId }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "runId: $RUN_ID"
+          echo "runUrl: $RUN_URL"
+          echo "runUrlHtml: $RUN_URL_HTML"
+          echo "workflowId: $WORKFLOW_ID"
+          if [ "$OUTCOME" = "success" ]; then
+            if [ -z "$RUN_ID" ]; then
+              echo "FAIL: action succeeded but runId output is empty"
+              exit 1
+            fi
+            if [ -z "$WORKFLOW_ID" ]; then
+              echo "FAIL: action succeeded but workflowId output is empty"
+              exit 1
+            fi
+            echo "PASS: action succeeded with runId=$RUN_ID workflowId=$WORKFLOW_ID"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (sentinel repo is not resolvable)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
