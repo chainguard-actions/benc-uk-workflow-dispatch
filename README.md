@@ -6,14 +6,14 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 ## Versions
 
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v1.2.3 | [`v1.2.3`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.2.3) | [`25b02cc`](https://github.com/benc-uk/workflow-dispatch/commit/25b02cc069be46d637e8fe2f1e8484008e9e9609) |
-| v1.2.4 | [`v1.2.4`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.2.4) | [`e2e5e9a`](https://github.com/benc-uk/workflow-dispatch/commit/e2e5e9a103e331dad343f381a29e654aea3cf8fc) |
-| v1.3.0 | [`v1.3.0`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.0) | [`a54f9d1`](https://github.com/benc-uk/workflow-dispatch/commit/a54f9d194fed472732282ed1597dc4909e4b4080) |
-| v1.3.1 | [`v1.3.1`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.1) | [`7a02764`](https://github.com/benc-uk/workflow-dispatch/commit/7a027648b88c2413826b6ddd6c76114894dc5ec4) |
-| v1.3.2 | [`v1.3.2`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.2) | [`31e2b33`](https://github.com/benc-uk/workflow-dispatch/commit/31e2b3319479a63f0ab15bf800eff9e913504e26) |
-| v1.3.3 | [`v1.3.3`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.3) | [`d004979`](https://github.com/benc-uk/workflow-dispatch/commit/d004979be141727c7a17c28f603e2facc40d0855) |
+| Version | Tag | Upstream commit | Hardening report |
+|---------|-----|-----------------|------------------|
+| v1.2.3 | [`v1.2.3`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.2.3) | [`25b02cc`](https://github.com/benc-uk/workflow-dispatch/commit/25b02cc069be46d637e8fe2f1e8484008e9e9609) | [`HARDENING.md`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/blob/v1.2.3/HARDENING.md) |
+| v1.2.4 | [`v1.2.4`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.2.4) | [`e2e5e9a`](https://github.com/benc-uk/workflow-dispatch/commit/e2e5e9a103e331dad343f381a29e654aea3cf8fc) | [`HARDENING.md`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/blob/v1.2.4/HARDENING.md) |
+| v1.3.0 | [`v1.3.0`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.0) | [`a54f9d1`](https://github.com/benc-uk/workflow-dispatch/commit/a54f9d194fed472732282ed1597dc4909e4b4080) | [`HARDENING.md`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/blob/v1.3.0/HARDENING.md) |
+| v1.3.1 | [`v1.3.1`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.1) | [`7a02764`](https://github.com/benc-uk/workflow-dispatch/commit/7a027648b88c2413826b6ddd6c76114894dc5ec4) | [`HARDENING.md`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/blob/v1.3.1/HARDENING.md) |
+| v1.3.2 | [`v1.3.2`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.2) | [`31e2b33`](https://github.com/benc-uk/workflow-dispatch/commit/31e2b3319479a63f0ab15bf800eff9e913504e26) | [`HARDENING.md`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/blob/v1.3.2/HARDENING.md) |
+| v1.3.3 | [`v1.3.3`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/tree/v1.3.3) | [`d004979`](https://github.com/benc-uk/workflow-dispatch/commit/d004979be141727c7a17c28f603e2facc40d0855) | [`HARDENING.md`](https://github.com/chainguard-actions/benc-uk-workflow-dispatch/blob/v1.3.3/HARDENING.md) |
 
 ## Privacy
 
